@@ -55,21 +55,40 @@ public final class Lanche {
     }
 
     public long getQuantidadeDeQueijo() {
-        return this.ingredientes.stream()
-            .filter(ingrediente -> ingrediente.getNome().toLowerCase().contains("queijo"))
+        return this.getQueijos()
             .count();
     }
 
     public BigDecimal getValorIndividualDaCarne() {
+        if(this.getQuantidadeDeCarne() == 0) {
+            return BigDecimal.ZERO;
+        }
+
         return this.getCarnes()
             .map(Ingrediente::getValor)
             .reduce(BigDecimal.ZERO, BigDecimal::add)
             .divide(BigDecimal.valueOf(this.getQuantidadeDeCarne()), RoundingMode.HALF_EVEN);
     }
 
+    public BigDecimal getValorIndividualDoQueijo() {
+        if(this.getQuantidadeDeQueijo() == 0) {
+            return BigDecimal.ZERO;
+        }
+
+        return this.getQueijos()
+            .map(Ingrediente::getValor)
+            .reduce(BigDecimal.ZERO, BigDecimal::add)
+            .divide(BigDecimal.valueOf(this.getQuantidadeDeQueijo()), RoundingMode.HALF_EVEN);
+    }
+
     private Stream<Ingrediente> getCarnes() {
         return ingredientes.stream()
             .filter(ingrediente -> ingrediente.getNome().toLowerCase().contains("carne"));
+    }
+
+    private Stream<Ingrediente> getQueijos() {
+        return ingredientes.stream()
+            .filter(ingrediente -> ingrediente.getNome().toLowerCase().contains("queijo"));
     }
 
     @Override
