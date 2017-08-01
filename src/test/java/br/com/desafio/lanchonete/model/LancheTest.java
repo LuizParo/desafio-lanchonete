@@ -29,7 +29,7 @@ public class LancheTest {
     @Test
     public void calculaValorTotalDoLancheComoZeroSeNenhumIngredienteEstiverPreente() {
         Lanche lanche = new Lanche("X-Bacon", new HashSet<>());
-        assertEquals(BigDecimal.ZERO, lanche.getValor());
+        assertEquals(BigDecimal.ZERO, lanche.getValorTotal());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class LancheTest {
         );
 
         Lanche lanche = new Lanche("X-Bacon", ingredientes);
-        assertEquals(new BigDecimal("6.50"), lanche.getValor());
+        assertEquals(new BigDecimal("6.50"), lanche.getValorTotal());
     }
 
     @Test
@@ -52,7 +52,7 @@ public class LancheTest {
         );
 
         Lanche lanche = new Lanche("X-Burger", ingredientes);
-        assertEquals(new BigDecimal("4.50"), lanche.getValor());
+        assertEquals(new BigDecimal("4.50"), lanche.getValorTotal());
     }
 
     @Test
@@ -64,7 +64,7 @@ public class LancheTest {
         );
 
         Lanche lanche = new Lanche("X-Egg", ingredientes);
-        assertEquals(new BigDecimal("5.30"), lanche.getValor());
+        assertEquals(new BigDecimal("5.30"), lanche.getValorTotal());
     }
 
     @Test
@@ -77,7 +77,7 @@ public class LancheTest {
         );
 
         Lanche lanche = new Lanche("X-Egg Bacon", ingredientes);
-        assertEquals(new BigDecimal("7.30"), lanche.getValor());
+        assertEquals(new BigDecimal("7.30"), lanche.getValorTotal());
     }
 
     @Test
@@ -138,5 +138,27 @@ public class LancheTest {
     public void obtemValorDaQuantidadeDeQueijoComo1SeLanchePossuir1PorcaoDeQueijo() {
         Lanche lanche = new Lanche("X-Burger", Arrays.asList(new Ingrediente("Queijo", new BigDecimal("0.40"))));
         assertEquals(1, lanche.getQuantidadeDeQueijo());
+    }
+
+    @Test
+    public void obtemValorIndividualDaCarneCorretamenteQuandoOLanchePossuiSomenteUmaPorcaoDeste() {
+        BigDecimal valorDaCarne = new BigDecimal("0.40");
+        Lanche lanche = new Lanche("X-Bacon", Arrays.asList(new Ingrediente("Hambúrguer de carne", valorDaCarne)));
+
+        assertEquals(valorDaCarne, lanche.getValorIndividualDaCarne());
+    }
+
+    @Test
+    public void obtemValorIndividualDaCarneCorretamenteQuandoOLanchePossuiMaisDeUmaPorcaoDeste() {
+        BigDecimal valorDaCarne = new BigDecimal("0.40");
+
+        List<Ingrediente> ingredientes = Arrays.asList(
+                new Ingrediente("Hambúrguer de carne", valorDaCarne),
+                new Ingrediente("Hambúrguer de carne", valorDaCarne),
+                new Ingrediente("Hambúrguer de carne", valorDaCarne)
+        );
+        Lanche lanche = new Lanche("X-Bacon", ingredientes);
+
+        assertEquals(valorDaCarne, lanche.getValorIndividualDaCarne());
     }
 }

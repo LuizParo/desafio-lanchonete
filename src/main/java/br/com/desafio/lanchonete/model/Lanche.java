@@ -1,9 +1,11 @@
 package br.com.desafio.lanchonete.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import static java.util.Objects.isNull;
 
@@ -24,7 +26,7 @@ public final class Lanche {
         return new HashSet<>(this.ingredientes);
     }
 
-    public BigDecimal getValor() {
+    public BigDecimal getValorTotal() {
         return this.ingredientes.stream()
             .map(Ingrediente::getValor)
             .reduce(BigDecimal.ZERO, BigDecimal::add);
@@ -43,9 +45,7 @@ public final class Lanche {
     }
 
     public long getQuantidadeDeCarne() {
-        return this.ingredientes.stream()
-                .filter(ingrediente -> ingrediente.getNome().toLowerCase().contains("carne"))
-                .count();
+        return this.getCarnes().count();
     }
 
     public long getQuantidadeDeOvo() {
@@ -58,6 +58,18 @@ public final class Lanche {
         return this.ingredientes.stream()
             .filter(ingrediente -> ingrediente.getNome().toLowerCase().contains("queijo"))
             .count();
+    }
+
+    public BigDecimal getValorIndividualDaCarne() {
+        return this.getCarnes()
+            .map(Ingrediente::getValor)
+            .reduce(BigDecimal.ZERO, BigDecimal::add)
+            .divide(BigDecimal.valueOf(this.getQuantidadeDeCarne()), RoundingMode.HALF_EVEN);
+    }
+
+    private Stream<Ingrediente> getCarnes() {
+        return ingredientes.stream()
+            .filter(ingrediente -> ingrediente.getNome().toLowerCase().contains("carne"));
     }
 
     @Override

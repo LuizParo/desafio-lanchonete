@@ -20,7 +20,7 @@ public class PromocaoLight implements Promocao {
         long quantidadeDeBacon = lanche.getQuantidadeDeBacon();
 
         return quantidadeDeAlface > 0 && quantidadeDeBacon == 0
-                ? lanche.getValor().multiply(new BigDecimal("0.10"))
+                ? lanche.getValorTotal().multiply(new BigDecimal("0.10"))
                 : BigDecimal.ZERO;
     }
 }
