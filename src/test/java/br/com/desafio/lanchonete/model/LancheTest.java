@@ -141,6 +141,13 @@ public class LancheTest {
     }
 
     @Test
+    public void obtemValorIndividualDaCarneComoZeroQuandoOLancheNaoPossuirNenhumaPorcaoDeste() {
+        Lanche lanche = new Lanche("X-Bacon", Arrays.asList(new Ingrediente("Queijo", BigDecimal.TEN)));
+
+        assertEquals(BigDecimal.ZERO, lanche.getValorIndividualDaCarne());
+    }
+
+    @Test
     public void obtemValorIndividualDaCarneCorretamenteQuandoOLanchePossuiSomenteUmaPorcaoDeste() {
         BigDecimal valorDaCarne = new BigDecimal("0.40");
         Lanche lanche = new Lanche("X-Bacon", Arrays.asList(new Ingrediente("Hambúrguer de carne", valorDaCarne)));
@@ -160,6 +167,13 @@ public class LancheTest {
         Lanche lanche = new Lanche("X-Bacon", ingredientes);
 
         assertEquals(valorDaCarne, lanche.getValorIndividualDaCarne());
+    }
+
+    @Test
+    public void obtemValorIndividualDoQueijoComoZeroQuandoOLancheNaoPossuirNenhumaPorcaoDeste() {
+        Lanche lanche = new Lanche("X-Egg", Arrays.asList(new Ingrediente("Ovo", BigDecimal.TEN)));
+
+        assertEquals(BigDecimal.ZERO, lanche.getValorIndividualDoQueijo());
     }
 
     @Test
