@@ -1,4 +1,4 @@
-package br.com.desafio.lanchonete.model;
+package br.com.desafio.lanchonete.cardapio;
 
 import java.math.BigDecimal;
 

@@ -1,10 +1,9 @@
-package br.com.desafio.lanchonete.model;
+package br.com.desafio.lanchonete.cardapio;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import static java.util.Objects.isNull;

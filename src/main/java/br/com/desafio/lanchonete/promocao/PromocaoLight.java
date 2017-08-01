@@ -1,6 +1,6 @@
 package br.com.desafio.lanchonete.promocao;
 
-import br.com.desafio.lanchonete.model.Lanche;
+import br.com.desafio.lanchonete.cardapio.Lanche;
 import java.math.BigDecimal;
 
 import org.springframework.stereotype.Component;
