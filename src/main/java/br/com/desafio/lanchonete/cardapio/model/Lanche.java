@@ -38,8 +38,11 @@ public final class Lanche {
     public BigDecimal getValorTotal() {
         return this.ingredientes.stream()
             .map(Ingrediente::getValor)
-            .reduce(BigDecimal.ZERO, BigDecimal::add)
-            .subtract(this.desconto);
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public BigDecimal getValorComDesconto() {
+        return this.getValorTotal().subtract(this.desconto);
     }
 
     public long getQuantidadeDeAlface() {

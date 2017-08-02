@@ -1,6 +1,7 @@
-package br.com.desafio.lanchonete.preco;
+package br.com.desafio.lanchonete.cardapio.repository;
 
 import br.com.desafio.lanchonete.cardapio.model.Ingrediente;
+import br.com.desafio.lanchonete.cardapio.repository.PrecoRepository;
 import java.math.BigDecimal;
 import java.util.Collection;
 
@@ -18,24 +19,6 @@ public class PrecoRepositoryEmMemoriaTest {
 
     @Autowired
     private PrecoRepository precoRepository;
-
-    @Test
-    public void buscaPrecoCorretoQuandoIngredienteExistir() {
-        BigDecimal valor = this.precoRepository.obtemPrecoDoIngrediente("Alface");
-        assertEquals(new BigDecimal("0.40"), valor);
-    }
-
-    @Test
-    public void buscaPrecoComoZeroQuandoIngredienteNaoExistir() {
-        BigDecimal valor = this.precoRepository.obtemPrecoDoIngrediente("Salsicha");
-        assertEquals(BigDecimal.ZERO, valor);
-    }
-
-    @Test
-    public void buscaPrecoComoZeroQuandoIngredienteForNull() {
-        BigDecimal valor = this.precoRepository.obtemPrecoDoIngrediente(null);
-        assertEquals(BigDecimal.ZERO, valor);
-    }
 
     @Test
     public void buscaTodosOsIngredientesComSeusRespectivosPrecos() {

@@ -1,12 +1,11 @@
-package br.com.desafio.lanchonete.cardapio.servico;
+package br.com.desafio.lanchonete.cardapio.service;
 
-import br.com.desafio.lanchonete.api.dto.IngredienteDto;
+import br.com.desafio.lanchonete.cardapio.api.IngredienteDto;
 import br.com.desafio.lanchonete.cardapio.model.Ingrediente;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Test;

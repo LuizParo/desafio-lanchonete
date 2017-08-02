@@ -1,4 +1,4 @@
-package br.com.desafio.lanchonete.api.dto;
+package br.com.desafio.lanchonete.cardapio.api;
 
 import br.com.desafio.lanchonete.cardapio.model.Ingrediente;
 import java.io.Serializable;
@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 public final class IngredienteDto implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private final String nome;
     private final BigDecimal valor;
 
@@ -22,6 +24,10 @@ public final class IngredienteDto implements Serializable {
 
     public BigDecimal getValor() {
         return valor;
+    }
+
+    public Ingrediente toEntidade() {
+        return new Ingrediente(this.nome, this.valor);
     }
 
     public static IngredienteDto toDto(Ingrediente ingrediente) {

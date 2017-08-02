@@ -1,8 +1,8 @@
-package br.com.desafio.lanchonete.cardapio.servico;
+package br.com.desafio.lanchonete.cardapio.service;
 
-import br.com.desafio.lanchonete.api.dto.IngredienteDto;
+import br.com.desafio.lanchonete.cardapio.api.IngredienteDto;
 import br.com.desafio.lanchonete.cardapio.model.Ingrediente;
-import br.com.desafio.lanchonete.preco.PrecoRepository;
+import br.com.desafio.lanchonete.cardapio.repository.PrecoRepository;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 

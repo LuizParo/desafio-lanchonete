@@ -1,4 +1,4 @@
-package br.com.desafio.lanchonete.cardapio;
+package br.com.desafio.lanchonete.cardapio.model;
 
 import br.com.desafio.lanchonete.cardapio.model.Ingrediente;
 import br.com.desafio.lanchonete.cardapio.model.Lanche;

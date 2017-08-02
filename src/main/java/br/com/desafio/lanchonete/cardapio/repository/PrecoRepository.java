@@ -1,11 +1,8 @@
-package br.com.desafio.lanchonete.preco;
+package br.com.desafio.lanchonete.cardapio.repository;
 
 import br.com.desafio.lanchonete.cardapio.model.Ingrediente;
-import java.math.BigDecimal;
 
 public interface PrecoRepository {
-
-    BigDecimal obtemPrecoDoIngrediente(String ingrediente);
 
     Iterable<Ingrediente> obtemIngredientesComPreco();
 }

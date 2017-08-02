@@ -1,7 +1,6 @@
 package br.com.desafio.lanchonete.cardapio.api;
 
-import br.com.desafio.lanchonete.api.dto.IngredienteDto;
-import br.com.desafio.lanchonete.cardapio.servico.IngredienteService;
+import br.com.desafio.lanchonete.cardapio.service.IngredienteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

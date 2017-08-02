@@ -1,4 +1,4 @@
-package br.com.desafio.lanchonete.preco;
+package br.com.desafio.lanchonete.cardapio.repository;
 
 import br.com.desafio.lanchonete.cardapio.model.Ingrediente;
 import java.math.BigDecimal;
@@ -20,12 +20,6 @@ public class PrecoRepositoryEmMemoria implements PrecoRepository {
         CACHE.put("Hambúrguer de carne", new BigDecimal("3.00"));
         CACHE.put("Ovo", new BigDecimal("0.80"));
         CACHE.put("Queijo", new BigDecimal("1.50"));
-    }
-
-    @Override
-    public BigDecimal obtemPrecoDoIngrediente(String ingrediente) {
-        BigDecimal valor = CACHE.get(ingrediente);
-        return isNull(valor) ? BigDecimal.ZERO : valor;
     }
 
     @Override
