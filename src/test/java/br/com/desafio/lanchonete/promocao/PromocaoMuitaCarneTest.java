@@ -1,7 +1,7 @@
 package br.com.desafio.lanchonete.promocao;
 
-import br.com.desafio.lanchonete.cardapio.Ingrediente;
-import br.com.desafio.lanchonete.cardapio.Lanche;
+import br.com.desafio.lanchonete.cardapio.model.Ingrediente;
+import br.com.desafio.lanchonete.cardapio.model.Lanche;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;

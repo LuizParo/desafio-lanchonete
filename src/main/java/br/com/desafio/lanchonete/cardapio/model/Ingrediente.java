@@ -1,4 +1,4 @@
-package br.com.desafio.lanchonete.cardapio;
+package br.com.desafio.lanchonete.cardapio.model;
 
 import java.math.BigDecimal;
 
@@ -6,7 +6,7 @@ import static java.util.Objects.isNull;
 
 public final class Ingrediente {
     private final String nome;
-    private final BigDecimal valor;
+    private BigDecimal valor;
 
     public Ingrediente(String nome, BigDecimal valor) {
         this.nome = isNull(nome) ? "" : nome;
@@ -19,6 +19,10 @@ public final class Ingrediente {
 
     public BigDecimal getValor() {
         return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = isNull(valor) ? BigDecimal.ZERO : valor;
     }
 
     @Override

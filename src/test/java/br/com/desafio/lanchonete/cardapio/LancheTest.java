@@ -1,5 +1,7 @@
 package br.com.desafio.lanchonete.cardapio;
 
+import br.com.desafio.lanchonete.cardapio.model.Ingrediente;
+import br.com.desafio.lanchonete.cardapio.model.Lanche;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +26,13 @@ public class LancheTest {
         Lanche lanche = new Lanche("X-Bacon", null);
         assertNotNull(lanche.getIngredientes());
         assertTrue(lanche.getIngredientes().isEmpty());
+    }
+
+    @Test
+    public void valorDoDescontoEhInicializadoComZeroAutomaticamente() {
+        Lanche lanche = new Lanche("X-Bacon", null);
+        assertNotNull(lanche.getDesconto());
+        assertEquals(BigDecimal.ZERO, lanche.getDesconto());
     }
 
     @Test

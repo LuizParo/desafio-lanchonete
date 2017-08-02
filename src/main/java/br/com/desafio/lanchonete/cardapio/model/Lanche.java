@@ -1,7 +1,8 @@
-package br.com.desafio.lanchonete.cardapio;
+package br.com.desafio.lanchonete.cardapio.model;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.stream.Stream;
@@ -11,6 +12,7 @@ import static java.util.Objects.isNull;
 public final class Lanche {
     private final String nome;
     private final Collection<Ingrediente> ingredientes;
+    private BigDecimal desconto = BigDecimal.ZERO;
 
     public Lanche(String nome, Collection<Ingrediente> ingredientes) {
         this.nome = isNull(nome) ? "" : nome;
@@ -21,14 +23,23 @@ public final class Lanche {
         return nome;
     }
 
+    public BigDecimal getDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(BigDecimal desconto) {
+        this.desconto = isNull(desconto) ? BigDecimal.ZERO : desconto;
+    }
+
     public Collection<Ingrediente> getIngredientes() {
-        return new HashSet<>(this.ingredientes);
+        return new ArrayList<>(this.ingredientes);
     }
 
     public BigDecimal getValorTotal() {
         return this.ingredientes.stream()
             .map(Ingrediente::getValor)
-            .reduce(BigDecimal.ZERO, BigDecimal::add);
+            .reduce(BigDecimal.ZERO, BigDecimal::add)
+            .subtract(this.desconto);
     }
 
     public long getQuantidadeDeAlface() {

@@ -1,5 +1,6 @@
 package br.com.desafio.lanchonete.cardapio;
 
+import br.com.desafio.lanchonete.cardapio.model.Ingrediente;
 import java.math.BigDecimal;
 
 import org.junit.Test;
