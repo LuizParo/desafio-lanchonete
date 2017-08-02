@@ -5,6 +5,7 @@ import br.com.desafio.lanchonete.cardapio.service.LancheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,13 @@ public class CardapioController {
         this.lancheService = lancheService;
     }
 
-    @PostMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public Iterable<LancheDto> obtemLanchesDoCardapio() {
+        return this.lancheService.obtemLanchesDoCardapio();
+    }
+
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public LancheDto criaLanche(@RequestBody LancheDto lancheDto) {
         return this.lancheService.criaLanche(lancheDto);

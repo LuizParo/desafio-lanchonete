@@ -22,6 +22,15 @@ public class LancheTest {
     }
 
     @Test
+    public void CriaDescontoComoZeroSeValorPassadoForNull() {
+        Lanche lanche = new Lanche(null, new ArrayList<>());
+        lanche.setDesconto(null);
+
+        assertNotNull(lanche.getDesconto());
+        assertEquals(BigDecimal.ZERO, lanche.getDesconto());
+    }
+
+    @Test
     public void criaLancheComSemIngredientesSeNullForPasadoComoParametroParaEste() {
         Lanche lanche = new Lanche("X-Bacon", null);
         assertNotNull(lanche.getIngredientes());
@@ -204,5 +213,17 @@ public class LancheTest {
         Lanche lanche = new Lanche("X-Bacon", ingredientes);
 
         assertEquals(valorDoQueijo, lanche.getValorIndividualDoQueijo());
+    }
+
+    @Test
+    public void aplicaDescontoNoValorTotalDoLanche() {
+        List<Ingrediente> ingredientes = Arrays.asList(
+                new Ingrediente("Queijo", BigDecimal.TEN),
+                new Ingrediente("Queijo", BigDecimal.TEN)
+        );
+        Lanche lanche = new Lanche("X-Bacon", ingredientes);
+        lanche.setDesconto(BigDecimal.ONE);
+
+        assertEquals(new BigDecimal("19"), lanche.getValorComDesconto());
     }
 }

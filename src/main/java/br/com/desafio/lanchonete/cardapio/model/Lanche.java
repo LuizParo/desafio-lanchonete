@@ -103,19 +103,4 @@ public final class Lanche {
         return ingredientes.stream()
             .filter(ingrediente -> ingrediente.getNome().toLowerCase().contains("queijo"));
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || !(o instanceof Lanche)) return false;
-
-        Lanche lanche = (Lanche) o;
-
-        return nome.equals(lanche.nome);
-    }
-
-    @Override
-    public int hashCode() {
-        return nome.hashCode();
-    }
 }

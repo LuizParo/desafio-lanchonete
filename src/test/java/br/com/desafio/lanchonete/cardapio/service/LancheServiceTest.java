@@ -3,8 +3,11 @@ package br.com.desafio.lanchonete.cardapio.service;
 import br.com.desafio.lanchonete.cardapio.api.LancheDto;
 import br.com.desafio.lanchonete.cardapio.model.Ingrediente;
 import br.com.desafio.lanchonete.cardapio.model.Lanche;
+import br.com.desafio.lanchonete.cardapio.repository.CardapioRepository;
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +20,7 @@ import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.only;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LancheServiceTest {
@@ -26,6 +30,9 @@ public class LancheServiceTest {
 
     @Mock
     private GerenciadorDePreco gerenciadorDePreco;
+
+    @Mock
+    private CardapioRepository cardapioRepository;
 
     private LancheDto lancheDto;
 
@@ -44,5 +51,24 @@ public class LancheServiceTest {
 
         verify(this.gerenciadorDePreco, only()).precificaOLanche(any(Lanche.class));
         assertNotNull(dto);
+    }
+
+    @Test
+    public void obtemTodosOsLanchesDoCardapioCorretamente() {
+        List<Ingrediente> ingredientes = Arrays.asList(
+                new Ingrediente("Ovo", new BigDecimal("0.80")),
+                new Ingrediente("Bacon", new BigDecimal("2.00")),
+                new Ingrediente("Hambúrguer de carne", new BigDecimal("3.00")),
+                new Ingrediente("Queijo", new BigDecimal("1.50"))
+        );
+
+        Lanche lanche = new Lanche("X-Egg Bacon", ingredientes);
+
+        when(this.cardapioRepository.obtemLanchesProntosDoCardapio()).thenReturn(Arrays.asList(lanche));
+
+        Iterable<LancheDto> lancheDtos = this.lancheService.obtemLanchesDoCardapio();
+        assertNotNull(lancheDtos);
+        assertFalse(((Collection<LancheDto>)lancheDtos).isEmpty());
+        assertEquals(1, ((Collection<LancheDto>)lancheDtos).size());
     }
 }

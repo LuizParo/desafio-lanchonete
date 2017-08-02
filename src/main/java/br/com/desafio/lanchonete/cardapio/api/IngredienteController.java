@@ -20,9 +20,9 @@ public class IngredienteController {
         this.ingredienteService = ingredienteService;
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public Iterable<IngredienteDto> buscaIngredientesComPreco() {
+    public Iterable<IngredienteDto> obtemIngredientesComPreco() {
         return this.ingredienteService.obtemIngredientesComPreco();
     }
 }

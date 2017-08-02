@@ -5,6 +5,8 @@ import br.com.desafio.lanchonete.cardapio.model.Ingrediente;
 import br.com.desafio.lanchonete.cardapio.model.Lanche;
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -44,5 +46,13 @@ public class LancheServiceIT {
 
         assertEquals(new BigDecimal("70"), novoLanche.getValorTotal());
         assertEquals(new BigDecimal("27.00"), novoLanche.getDesconto());
+    }
+
+    @Test
+    public void obtemTodosOsLanchesDoCardapioCorretamente() {
+        Iterable<LancheDto> lancheDtos = this.lancheService.obtemLanchesDoCardapio();
+        assertNotNull(lancheDtos);
+        assertFalse(((Collection<LancheDto>)lancheDtos).isEmpty());
+        assertEquals(4, ((Collection<LancheDto>)lancheDtos).size());
     }
 }

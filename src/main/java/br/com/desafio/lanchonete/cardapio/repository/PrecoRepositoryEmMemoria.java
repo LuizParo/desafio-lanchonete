@@ -6,21 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
-import static java.util.Objects.isNull;
-
 @Repository
+@Profile({"test", "default"})
 public class PrecoRepositoryEmMemoria implements PrecoRepository {
     private static final Map<String, BigDecimal> CACHE = new HashMap<>();
-
-    static {
-        CACHE.put("Alface", new BigDecimal("0.40"));
-        CACHE.put("Bacon", new BigDecimal("2.00"));
-        CACHE.put("Hambúrguer de carne", new BigDecimal("3.00"));
-        CACHE.put("Ovo", new BigDecimal("0.80"));
-        CACHE.put("Queijo", new BigDecimal("1.50"));
-    }
 
     @Override
     public Iterable<Ingrediente> obtemIngredientesComPreco() {
@@ -28,5 +20,10 @@ public class PrecoRepositoryEmMemoria implements PrecoRepository {
             .stream()
             .map(entry -> new Ingrediente(entry.getKey(), entry.getValue()))
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public void salvaPrecoParaOIngrediente(String ingrediente, BigDecimal valor) {
+        CACHE.put(ingrediente, valor);
     }
 }
