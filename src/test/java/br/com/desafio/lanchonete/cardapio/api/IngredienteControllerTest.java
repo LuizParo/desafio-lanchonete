@@ -2,14 +2,12 @@ package br.com.desafio.lanchonete.cardapio.api;
 
 import br.com.desafio.lanchonete.LanchoneteApplication;
 import java.math.BigDecimal;
-import javax.servlet.ServletContext;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -37,15 +35,6 @@ public class IngredienteControllerTest {
     @Before
     public void setup() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-    }
-
-    @Test
-    public void verificaSeSetupFunciona() {
-        ServletContext servletContext = this.wac.getServletContext();
-
-        assertNotNull(servletContext);
-        assertTrue(servletContext instanceof MockServletContext);
-        assertNotNull(this.wac.getBean(IngredienteController.class));
     }
 
     @Test

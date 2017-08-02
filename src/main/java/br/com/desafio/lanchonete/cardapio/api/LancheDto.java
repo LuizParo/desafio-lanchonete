@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import static java.util.Objects.isNull;
 
@@ -23,7 +24,10 @@ public final class LancheDto implements Serializable {
     private final Collection<IngredienteDto> ingredientes;
 
     @JsonCreator
-    public LancheDto(String nome, BigDecimal valorTotal, BigDecimal desconto, Collection<IngredienteDto> ingredientes) {
+    public LancheDto(@JsonProperty("nome") String nome,
+                     @JsonProperty("valorTotal") BigDecimal valorTotal,
+                     @JsonProperty("desconto") BigDecimal desconto,
+                     @JsonProperty("ingredientes") Collection<IngredienteDto> ingredientes) {
         this.nome = nome;
         this.valorTotal = valorTotal;
         this.desconto = desconto;

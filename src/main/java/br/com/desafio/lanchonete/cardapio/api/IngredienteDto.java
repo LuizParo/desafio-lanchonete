@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public final class IngredienteDto implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -13,7 +14,7 @@ public final class IngredienteDto implements Serializable {
     private final BigDecimal valor;
 
     @JsonCreator
-    public IngredienteDto(String nome, BigDecimal valor) {
+    public IngredienteDto(@JsonProperty("nome") String nome, @JsonProperty("valor") BigDecimal valor) {
         this.nome = nome;
         this.valor = valor;
     }
